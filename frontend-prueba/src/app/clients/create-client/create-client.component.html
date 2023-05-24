@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="header">
+    <h1>
+      {{ client.nombres.length > 0 ? "Editar Cliente" : "Registrar Cliente" }}
+    </h1>
+    <div class="actions">
+      <button (click)="deleteClient()" *ngIf="client.nombres.length > 0">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button class="close" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="content">
+    <form [formGroup]="clientForm">
+      <div class="form-controller">
+        <label>Nombres</label>
+        <div class="form-container">
+          <input
+            formControlName="nombres"
+            placeholder="Ingrese sus nombres"
+            type="text"
+          />
+          <mat-icon>person</mat-icon>
+        </div>
+        <p
+          *ngIf="
+            clientForm.get('nombres')?.errors &&
+            clientForm.get('nombres')?.dirty
+          "
+          class="error"
+        >
+          Es necesario un nombre
+        </p>
+      </div>
+      <div class="form-controller">
+        <label>Edad</label>
+        <div class="form-container">
+          <input
+            formControlName="edad"
+            placeholder="Ingrese su edad"
+            type="text"
+          />
+          <mat-icon>person</mat-icon>
+        </div>
+        <p
+          *ngIf="
+            clientForm.get('edad')?.errors && clientForm.get('edad')?.dirty
+          "
+          class="error"
+        >
+          Es necesario su edad
+        </p>
+      </div>
+
+      <button (click)="submitForm()">
+        {{
+          client.nombres.length > 0 ? " Editar Cliente" : "Registrar Cliente"
+        }}
+      </button>
+    </form>
+  </div>
+</div>

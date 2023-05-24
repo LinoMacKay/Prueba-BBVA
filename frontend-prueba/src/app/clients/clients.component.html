@@ -1,0 +1,35 @@
+<app-nav></app-nav>
+<router-outlet></router-outlet>
+<div class="container">
+  <div class="main-title">
+    <div class="title">
+      <h1>Clientes</h1>
+      <p>Gestión de los Clientes</p>
+      <div class="filter">
+        <!-- <div class="form-controller">
+          <div class="form-container">
+            <input
+              [(ngModel)]="inputFilter"
+              placeholder="Ingrese su filtro"
+              type="text"
+              (ngModelChange)="onInputFilterChange($event)"
+            />
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="action">
+      <button (click)="createClient()">Crear Cliente</button>
+    </div>
+  </div>
+  <div class="clientes">
+    <div class="noClientes" *ngIf="clients.length == 0">
+      <h1>No hay Clientes disponibles</h1>
+    </div>
+    <app-client-card
+      (resultEmitter)="this.initialize()"
+      *ngFor="let client of clients"
+      [client]="client"
+    ></app-client-card>
+  </div>
+</div>
